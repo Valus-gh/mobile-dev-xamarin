@@ -1,19 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeteoAppSkeleton.Views.MeteoItemPage">
     <ContentPage.Content>
-        <RelativeLayout x:Name="container">
-            <Label Text="{Binding Title}" RelativeLayout.XConstraint="{ConstraintExpression 
-                        Type=RelativeToParent,
-                        Property=Width, 
-                        Factor=0.5,
-                        Constant=-25}"
-                   RelativeLayout.YConstraint=
-                "{ConstraintExpression 
-                        Type=RelativeToParent,
-                        Property=Height,
-                        Factor=0.5,
-                        Constant=-25}"
-            ></Label>
-        </RelativeLayout>
+        <StackLayout Spacing="10" x:Name="DetailContainer">
+            <Grid
+                Margin="0"
+                ColumnSpacing="0"
+                RowSpacing="0"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid
+                    Margin="0"
+                    ColumnSpacing="0"
+                    RowSpacing="0"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    
+                    Grid.Row="1"
+                    Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label 
+                        Text="Lowest" 
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="25"
+                    
+                        Grid.Row="0"
+                        Grid.Column="0"
+                    
+                    ></Label>
+
+                    <Label 
+                        Text="Highest" 
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="25"
+                    
+                        Grid.Row="0"
+                        Grid.Column="1"
+                    
+                    ></Label>
+                    
+                    <Label 
+                        Text="{Binding LowestTemp, StringFormat='{0:F0} C'}" 
+                        HorizontalOptions="Center"
+                        VerticalOptions="FillAndExpand"
+                        FontSize="25"
+                    
+                        Grid.Row="1"
+                        Grid.Column="0"
+                    
+                    ></Label>
+
+                    <Label 
+                        Text="{Binding HighestTemp, StringFormat='{0:F0} C'}" 
+                        HorizontalOptions="Center"
+                        VerticalOptions="FillAndExpand"
+                        FontSize="25"
+                    
+                        Grid.Row="1"
+                        Grid.Column="1"
+                    
+                    ></Label>
+
+
+                </Grid>
+                
+                <BoxView 
+                    Color="LightGreen"
+                    WidthRequest="200"
+                    HeightRequest="200"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    CornerRadius="180"
+                    
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    
+                ></BoxView>
+                
+                <Label                
+                    Text="{Binding AvgTemp, StringFormat='{0:F0} C'}" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="40"
+                    
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    
+                ></Label>
+                
+                
+                
+            </Grid>
+
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
