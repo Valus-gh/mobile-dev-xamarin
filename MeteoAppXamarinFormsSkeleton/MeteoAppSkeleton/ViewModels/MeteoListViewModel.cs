@@ -19,18 +19,15 @@ namespace MeteoAppSkeleton.ViewModels
 
         public MeteoListViewModel()
         {
-            Entries = new ObservableCollection<Entry>();
-
-            for (var i = 0; i < 10; i++)
-            {
-                var e = new Entry
-                {
-                    ID = i,
-                    Title = "Entry " + i
-                };
-
-                Entries.Add(e);
-            }
+            reload();
         }
+
+        public void reload()
+        {
+
+            Entries = new ObservableCollection<Entry>(App.Database.GetAllItems().Result);
+
+        }
+
     }
 }
