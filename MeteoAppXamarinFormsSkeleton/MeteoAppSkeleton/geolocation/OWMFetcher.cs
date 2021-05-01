@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MeteoAppSkeleton.geolocation
 {
@@ -16,6 +17,23 @@ namespace MeteoAppSkeleton.geolocation
             
             var httpClient = new HttpClient();
             return await httpClient.GetStringAsync(uri);
+
+        }
+        
+        public static async Task<string> GetLocationFromName(string name)
+        {
+            Uri uri = new Uri("https://api.openweathermap.org/data/2.5/weather?q=" + name + "&units=metric&lang=it&appid=" + KEY);
+            
+            var httpClient = new HttpClient();
+
+            try
+            {
+                return await httpClient.GetStringAsync(uri);
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }     
 
         }
 

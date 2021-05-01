@@ -20,7 +20,7 @@
                 <ViewCell>
                     <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                        <Label Text="{Binding AvgTemp}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                        <Label Text="{Binding AvgTemp, StringFormat='{0:F0} C'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

@@ -25,6 +25,8 @@ namespace MeteoAppSkeleton.Views
             //DisplayAlert("Messaggio", "Testo", "OK");
 
             await ShowDialog();
+
+
         }
 
         async void OnCurrentLocationAdded(object sender, EventArgs e)
@@ -59,8 +61,23 @@ namespace MeteoAppSkeleton.Views
                 Title = "Insert new Entry"
             });
 
-            if (newEntryString.Ok && !string.IsNullOrWhiteSpace(newEntryString.Text)) ;
-            //do add newEntryString.Text
+            if (newEntryString.Ok && !string.IsNullOrWhiteSpace(newEntryString.Text))
+            {
+                var result = await geolocation.OWMFetcher.GetLocationFromName(newEntryString.Text);
+
+                Models.Entry entry = new Models.Entry
+                {
+                    ID = (string)JObject.Parse(result)["id"],
+                    Title = (string)JObject.Parse(result)["name"],
+                    AvgTemp = (double)JObject.Parse(result)["main"]["temp"],
+                    LowestTemp = (double)JObject.Parse(result)["main"]["temp_min"],
+                    HighestTemp = (double)JObject.Parse(result)["main"]["temp_max"],
+
+                };
+
+                await App.Database.AddItem(entry);
+                ((MeteoListViewModel)BindingContext).reload();
+            }
 
         }
 
